@@ -53,7 +53,7 @@ def buscar_contatos(supabase):
         .table("contatos")
         .select("id,nome_contato,phone,enviado")
         .eq("enviado", False)
-        .limit(1)
+        .limit(3)
         .execute()
     )
 

@@ -1,15 +1,12 @@
-# Projeto b2bflow - Supabase + Z-API
+# Projeto b2bflow — Supabase + Z-API
 
-Script em Python que lê contatos cadastrados no Supabase e envia a mensagem:
+Automação em Python que lê contatos do Supabase e envia a mensagem:
+
 `Olá, <nome_contato> tudo bem com você?`
 
-## Requisitos
-- Python 3.10+
-- Conta no Supabase
-- Conta na Z-API
-
 ## Setup da tabela
-Crie a tabela `contatos`:
+
+Crie a tabela `contatos` no Supabase:
 
 ```sql
 create table public.contatos (
@@ -19,3 +16,29 @@ create table public.contatos (
   enviado boolean not null default false,
   enviado_em timestamptz
 );
+```
+
+## Variáveis de ambiente
+
+Crie um arquivo `.env` na raiz do projeto:
+
+```env
+SUPABASE_URL=https://SEU_PROJETO.supabase.co
+SUPABASE_SERVICE_ROLE_KEY=sua_service_role_key
+
+ZAPI_BASE_URL=https://api.z-api.io
+ZAPI_INSTANCE_ID=seu_instance_id
+ZAPI_TOKEN=seu_token
+ZAPI_CLIENT_TOKEN=seu_client_token
+```
+
+## Como rodar
+
+```bash
+pip install -r requirements.txt
+python main.py
+```
+
+## Observação
+
+O script envia para até 3 contatos pendentes por execução e atualiza o status no banco.
